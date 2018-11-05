@@ -17,7 +17,10 @@ function openurls(size) {
     }
     for(var i = 0; i < size; i++){
         if (lines[i] != '') {
-            window.open(lines[i]);
+            windowObjectReference = window.open(lines[i]);
+            windowObjectReference.onload = function () {
+                this.close();
+            }
         }
     }
 }
