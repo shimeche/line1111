@@ -21,7 +21,7 @@ function openurls() {
     if (urls.length < opensize) {
         opensize = urls.length;
     }
-    for(var i = historyLine; i < opensize; i++){
+    for(var i = historyLine; i < historyLine + opensize; i++){
         if (urls[i] != '' && urls[i].includes('http')) {
             setTimeout(function () {
                 openwindows.push(window.open(urls[i]));
