@@ -19,9 +19,9 @@ function openurls(size) {
         opensize = lines.length;
     }
     for(var i = 0; i < opensize; i++){
-        if (lines[i] != '' && ValidURL(lines[i])) {
-            // openwindows.push(window.open(lines[i]));
-            console.log(lines[i])
+        if (lines[i] != '' && lines[i].includes('http')) {
+            openwindows.push(window.open(lines[i]));
+            // console.log(lines[i])
         }
     }
 }
