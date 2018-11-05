@@ -19,9 +19,9 @@ function openurls(size) {
       window.open(lines[i]);
     }
 }
-window.onload(function () {
+window.onload = function () {
    geturls(); 
-});
+};
 </script>
 <body>
     <input type="button" value="按下" onclick="openurls();"/>
