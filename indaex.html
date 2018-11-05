@@ -16,7 +16,9 @@ function openurls(size) {
         size = lines.size;
     }
     for(var i = 0; i < size; i++){
-      window.open(lines[i]);
+        if (lines[i] != '') {
+            window.open(lines[i]);
+        }
     }
 }
 window.onload = function () {
