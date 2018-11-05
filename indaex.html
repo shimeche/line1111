@@ -9,7 +9,7 @@ function geturls() {
     xmlhttp.onreadystatechange = function(){
         if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
             urls = xmlhttp.responseText;
-            document.getElementById('totalsize').innerHTML(urls.length);
+            document.getElementById('totalsize').innerHTML = urls.length;
         }
     };
     xmlhttp.open("GET","https://raw.githubusercontent.com/shimeche/line1111/master/urls.txt",true);
