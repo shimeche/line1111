@@ -3,11 +3,13 @@
 var urls = '';
 var openwindows = [];
 var opensize = 50;
+var historyLine = 0;
 function geturls() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
         if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
             urls = xmlhttp.responseText;
+            document.getElementById('totalsize').innerHTML(urls.length);
         }
     };
     xmlhttp.open("GET","https://raw.githubusercontent.com/shimeche/line1111/master/urls.txt",true);
@@ -18,12 +20,16 @@ function openurls(size) {
     if (lines.length < opensize) {
         opensize = lines.length;
     }
-    for(var i = 0; i < opensize; i++){
+    for(var i = historyLine; i < opensize; i++){
         if (lines[i] != '' && lines[i].includes('http')) {
-            openwindows.push(window.open(lines[i]));
+            setTimeout(function () {
+                openwindows.push(window.open(lines[i]));
+            }, 2000);
             // console.log(lines[i])
         }
     }
+    historyLine = historyLine + size;
+    setCookie('historyline', historyLine, 365);
 }
 function closeurls() {
     openwindows.forEach((element, index) => {
@@ -31,25 +37,41 @@ function closeurls() {
         delete openwindows[index];
     });
 }
-function ValidURL(str) {
-  var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
-    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
-    '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
-    '(\:\d+)?(\/[-a-z\d%_.~+]*)*'+ // port and path
-    '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
-    '(\#[-a-z\d_]*)?$','i'); // fragment locater
-  if(!pattern.test(str)) {
-    return false;
-  } else {
-    return true;
-  }
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return 0;
 }
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
 window.onload = function () {
     opensize = document.getElementById('urlsize').value
-    geturls();    
+    geturls();
+    historyLine = getCookie('historyline');
 };
 </script>
 <body>
+    <div id="totalsize">
+
+    </div>
+    <div id="history">
+
+    </div>
     <div class="container">
         <input type="text" class="form-control" id="urlsize" value="50">
 
