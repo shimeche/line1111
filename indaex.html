@@ -12,15 +12,13 @@ function geturls() {
 }
 function openurls(size) {
     var lines = urls.split('\n');
-    if (lines.size < size) {
-        size = lines.size;
+    if (lines.length < size) {
+        size = lines.length;
     }
     for(var i = 0; i < size; i++){
         if (lines[i] != '') {
-            windowObjectReference = window.open(lines[i]);
-            windowObjectReference.onload = function () {
-                this.close();
-            }
+            var w = window.open(lines[i]);
+            w.addEventListener('load', w.close(), true); 
         }
     }
 }
