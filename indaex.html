@@ -48,7 +48,7 @@ function getCookie(cname) {
             c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+            return parseInt(c.substring(name.length, c.length));
         }
     }
     return 0;
@@ -63,7 +63,7 @@ function setCookie(cname, cvalue, exdays) {
 window.onload = function () {
     opensize = parseInt(document.getElementById('urlsize').value);
     geturls();
-    historyLine = getCookie('historyline');
+    historyLine = parseInt(getCookie('historyline'));
 };
 </script>
 <body>
