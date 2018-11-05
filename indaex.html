@@ -1,7 +1,6 @@
 <script>
 var urls = '';
-function openw() {
-    var txt = '';
+function geturls() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
         if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
@@ -11,7 +10,19 @@ function openw() {
     xmlhttp.open("GET","https://raw.githubusercontent.com/shimeche/line1111/master/urls.txt",true);
     xmlhttp.send();
 }
+function openurls(size) {
+    var lines = urls.split('\n');
+    if (lines.size < size) {
+        size = lines.size;
+    }
+    for(var i = 0; i < size; i++){
+      window.open(lines[i]);
+    }
+}
+window.onload(function () {
+   geturls(); 
+});
 </script>
 <body>
-    <input type="button" value="按下"/>
+    <input type="button" value="按下" onclick="open"/>
 </body>
