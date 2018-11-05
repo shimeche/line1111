@@ -16,14 +16,14 @@ function geturls() {
     xmlhttp.open("GET","https://raw.githubusercontent.com/shimeche/line1111/master/urls.txt",true);
     xmlhttp.send();
 }
-function openurls(size) {
-    if (lines.length < opensize) {
-        opensize = lines.length;
+function openurls() {
+    if (urls.length < opensize) {
+        opensize = urls.length;
     }
     for(var i = historyLine; i < opensize; i++){
-        if (lines[i] != '' && lines[i].includes('http')) {
+        if (urls[i] != '' && urls[i].includes('http')) {
             setTimeout(function () {
-                openwindows.push(window.open(lines[i]));
+                openwindows.push(window.open(urls[i]));
             }, 2000);
             // console.log(lines[i])
         }
@@ -75,8 +75,7 @@ window.onload = function () {
     <div class="container">
         <input type="text" class="form-control" id="urlsize" value="50">
 
-        <button type="button" class="btn btn-primary" onclick="openurls(50);">開50個</button>
-        <button type="button" class="btn btn-primary" onclick="openurls(50);">開100個</button>
+        <button type="button" class="btn btn-primary" onclick="openurls();">開吧</button>
         <button type="button" class="btn btn-primary" onclick="closeurls(50);">關閉已開啟的</button>
     </div>
 </body>
