@@ -23,9 +23,7 @@ function openurls() {
     }
     for(var i = historyLine; i < historyLine + opensize; i++){
         if (urls[i] != '' && urls[i].includes('http')) {
-            setTimeout(function () {
-                openwindows.push(window.open(urls[i]));
-            }, 2000);
+            openwindows.push(window.open(urls[i]));
             // console.log(lines[i])
         }
     }
