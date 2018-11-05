@@ -2,6 +2,7 @@
 <script>
 var urls = '';
 var openwindows = [];
+var opensize = 50;
 function geturls() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
@@ -14,12 +15,13 @@ function geturls() {
 }
 function openurls(size) {
     var lines = urls.split('\n');
-    if (lines.length < size) {
-        size = lines.length;
+    if (lines.length < opensize) {
+        opensize = lines.length;
     }
-    for(var i = 0; i < size; i++){
+    for(var i = 0; i < opensize; i++){
         if (lines[i] != '') {
-            openwindows.push(window.open(lines[i]));
+            // openwindows.push(window.open(lines[i]));
+            console.log(lines[i])
         }
     }
 }
@@ -30,12 +32,16 @@ function closeurls() {
     });
 }
 window.onload = function () {
-   geturls(); 
+    opensize = document.getElementById('urlsize').value
+    geturls();    
 };
 </script>
 <body>
     <div class="container">
+        <input type="text" class="form-control" id="urlsize" value="50">
+
         <button type="button" class="btn btn-primary" onclick="openurls(50);">開50個</button>
+        <button type="button" class="btn btn-primary" onclick="openurls(50);">開100個</button>
         <button type="button" class="btn btn-primary" onclick="closeurls(50);">關閉已開啟的</button>
     </div>
 </body>
