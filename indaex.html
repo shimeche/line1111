@@ -1,3 +1,17 @@
+<script>
+var urls = '';
+function openw() {
+    var txt = '';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+            urls = xmlhttp.responseText;
+        }
+    };
+    xmlhttp.open("GET","https://raw.githubusercontent.com/shimeche/line1111/master/urls.txt",true);
+    xmlhttp.send();
+}
+</script>
 <body>
-abc
+    <input type="button" value="按下"/>
 </body>
