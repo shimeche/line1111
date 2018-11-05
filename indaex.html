@@ -8,7 +8,8 @@ function geturls() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
         if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
-            urls = xmlhttp.responseText;
+            urls = xmlhttp.responseText.split('\n');
+
             document.getElementById('totalsize').innerHTML = urls.length;
         }
     };
@@ -16,7 +17,6 @@ function geturls() {
     xmlhttp.send();
 }
 function openurls(size) {
-    var lines = urls.split('\n');
     if (lines.length < opensize) {
         opensize = lines.length;
     }
