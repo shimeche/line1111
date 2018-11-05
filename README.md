@@ -2,6 +2,7 @@
 開獎吧
 
 ****一次開多個分享連結*****
+
 0. 使用電腦 開啟瀏覽器chrome
 1. https://buy.line.me/account 確定登入自己的line帳號
 2. 隨便試一個連結，Ex: https://goo.gl/bmAAHu 確定可以用網頁開
