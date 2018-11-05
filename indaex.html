@@ -1,5 +1,6 @@
 <script>
 var urls = '';
+var openwindows = null;
 function geturls() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
@@ -17,10 +18,15 @@ function openurls(size) {
     }
     for(var i = 0; i < size; i++){
         if (lines[i] != '') {
-            var w = window.open(lines[i]);
-            w.addEventListener('load', w.close(), true); 
+            openwindows.push(window.open(lines[i]));
         }
     }
+}
+function closeurls() {
+    openwindows.forEach((element, index) => {
+        element.close();
+        delete openwindows[index];
+    });
 }
 window.onload = function () {
    geturls(); 
@@ -28,4 +34,5 @@ window.onload = function () {
 </script>
 <body>
     <input type="button" value="按下" onclick="openurls(50);"/>
+    <input type="button" value="關閉" onclick="closeurls();"/>
 </body>
