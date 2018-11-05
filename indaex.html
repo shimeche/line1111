@@ -60,7 +60,7 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 window.onload = function () {
-    opensize = document.getElementById('urlsize').value
+    opensize = parseInt(document.getElementById('urlsize').value);
     geturls();
     historyLine = getCookie('historyline');
 };
