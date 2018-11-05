@@ -17,6 +17,7 @@ function geturls() {
     xmlhttp.send();
 }
 function openurls() {
+    opensize = parseInt(document.getElementById('urlsize').value);
     if (urls.length < opensize) {
         opensize = urls.length;
     }
